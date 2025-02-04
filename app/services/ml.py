@@ -1,13 +1,3 @@
-# Machine Learning Model
-#  - It no, month, year, R tag, pop, volume, water_pp, percapita
-#  - tariff per house type, tariff per pipe/ transport e.g. pipe, tank
-#  - cost structure NW, delivery targets, investments
-
-# R1 - 
-# R2 - 
-# R3 - 
-# R4 - 
-
 import os
 import torch
 from torch import nn
@@ -57,6 +47,5 @@ class MIL():
         df = log.fit_transform(X)
         x_test = torch.tensor([df]).float()
         y_hat = self.model(x_test)
-        print(y_hat)
         y_hat = log.inverse_transform(y_hat.detach().numpy())
         return y_hat.tolist()[0]
