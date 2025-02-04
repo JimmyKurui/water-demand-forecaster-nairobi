@@ -1,8 +1,6 @@
-from flask import Flask, request, Response, make_response, render_template, abort, send_from_directory
+from flask import Flask, request, Response, make_response, render_template, abort, send_from_directory, jsonify
 from markupsafe import escape
-import pandas as pd
 from dotenv import load_dotenv
-
 
 load_dotenv()
 app = Flask(__name__, template_folder="templates", static_folder='static', static_url_path='/')
@@ -16,10 +14,15 @@ def index():
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
+    from app.services.ml import MIL
     if request.method == "POST":
         ward = request.form.get("ward")
         month = request.form.get("month")
-        return f"You made a POST request \n{ward, month}"
+        volume = request.form.get("volume")
+        print(f"You made a POST request \n{ward, month}")
+        lstm = MIL()
+        prediction = lstm.predict(ward, volume, month)
+        return jsonify({"value": prediction})
     elif request.method == "GET":
         return "You made a GET request \n"
     else:
