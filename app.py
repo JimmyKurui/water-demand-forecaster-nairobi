@@ -1,7 +1,8 @@
 from flask import Flask, request, Response, make_response, render_template, abort, send_from_directory, jsonify
 from markupsafe import escape
 from dotenv import load_dotenv
-from app.constants import R1, R2, R3, R4
+from itertools import chain
+from app.constants import zones
 
 load_dotenv()
 app = Flask(__name__, template_folder="templates", static_folder='static', static_url_path='/')
@@ -11,8 +12,8 @@ app = Flask(__name__, template_folder="templates", static_folder='static', stati
 def index():
     from app.services.gis import Map
     map = Map()
-    areas = sorted(R1+R2+R3+R4)
-    return render_template("index.html", title="Home", city="Nairobi", areas=areas, map_gdf=map.nairobi[['subcounty', 'ward']].head(), map_url=map.generate_interactive_map())
+    areas = list(chain(*zones.values()))
+    return render_template("index.html", title="Home", city="Nairobi", areas=areas, map_gdf=map.nairobi.columns, map_url=map.generate_interactive_map())
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
