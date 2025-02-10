@@ -1,7 +1,8 @@
-from flask import Flask, request, Response, make_response, render_template, abort, send_from_directory, jsonify
+from flask import Flask, request, Response, render_template, jsonify
 from markupsafe import escape
 from dotenv import load_dotenv
 from itertools import chain
+from datetime import datetime
 from app.constants import zones
 
 load_dotenv()
@@ -19,26 +20,16 @@ def index():
 def predict():
     from app.services.ml import MIL
     if request.method == "POST":
-        ward = request.form.get("ward")
-        month = request.form.get("month")
-        volume = request.form.get("volume")
-        print(f"You made a POST request \n{ward, month}")
+        ward = escape(request.form.get("ward"))
+        month = escape(request.form.get("month"))
         lstm = MIL()
-        prediction = lstm.predict(ward, volume, month)
-        return jsonify({"value": prediction})
+        month = datetime.strptime(month, "%Y-%m")
+        prediction, df = lstm.predict(ward, month)
+        return jsonify({"value": prediction.tolist()})
     elif request.method == "GET":
         return "You made a GET request \n"
     else:
-        return "Not a request \n", 200
-
-
-@app.route("/capitalize/<word>/")
-def capitalize(word):
-    response = make_response("<h1>{}</h1>".format(escape(word.capitalize())))
-    response.status_code = 202
-    response.headers["content-type"] = "application/json"
-    return response
-
+        return "Not a valid request \n", 200
 
 @app.route("/contribute", methods=['GET', 'POST'])
 def contribute():
@@ -50,16 +41,10 @@ def contribute():
         if file.content_type == 'text/plain':
             return file.read().decode()
         else:
-            return 'Excel File'
+            return 'To be processed'
 
 """ 
  -- Sample routes for reuse
- 
-@app.route("/add/<int:n1>/<int:n2>/")
-def add(n1, n2):
-    return "<h1>{}</h1>".format(n1 + n2)
-
-
 @app.route("/users/<int:user_id>")
 def greet_user(user_id):
     if "greeting" in request.args.keys() and "name" in request.args.keys():
@@ -85,17 +70,6 @@ def convert():
         }
     )
     return response
-
-@app.route("/convert_two", methods=['POST'])
-def convert_two():
-    file = request.files.get('file')
-    df = pd.read_excel(file)
-    
-    if os.
-    return response
-@app.route("/download")
-def download(): 
-    pass
 """
     
     

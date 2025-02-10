@@ -10,9 +10,9 @@
             <p class="text-muted">Input options to predict water usage</p>
             <form method="POST" action="{{ url_for('predict') }}">
                 <div class="mb-3">
-                    <label for="exampleDataList" class="form-label">Ward</label>
+                    <label for="exampleDataList" class="form-label">Location</label>
                     <input class="form-control" list="datalistOptions" id="exampleDataList"
-                        placeholder="Type to search...">
+                       name="ward" placeholder="Type to search...">
                     <datalist id="datalistOptions">
                         {% for area in areas %}
                         <option value={{ area }}>

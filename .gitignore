@@ -3,3 +3,5 @@
 # Project specific
 __pycache__
 venv
+files/*
+data/files/*.csv
