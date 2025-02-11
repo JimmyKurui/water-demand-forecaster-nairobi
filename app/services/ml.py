@@ -6,7 +6,6 @@ import numpy as np
 from sklearn.preprocessing import PowerTransformer
 
 from flask import current_app
-from ..constants import zones
 
 model_path = os.path.join(current_app.root_path, 'data/models/lstm_water_forecast.pth')
 data_path = os.path.join(current_app.root_path, 'data/files/normalized_data.csv')

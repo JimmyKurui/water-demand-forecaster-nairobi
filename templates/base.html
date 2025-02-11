@@ -44,7 +44,12 @@
         <p class="text-center text-muted">Jimmy Chepkurui</p>
     </footer>
 
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script>
+        var predictUrl = "{{ url_for('predict') }}"
+        console.log(predictUrl, 'alert')
+    </script>
     <script src="/js/index.js"></script>
 </body>
 

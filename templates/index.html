@@ -8,11 +8,11 @@
     <div class="row">
         <div class="col-12 col-md-4 p-3 border-end">
             <p class="text-muted">Input options to predict water usage</p>
-            <form method="POST" action="{{ url_for('predict') }}">
+            <form id="predict-form" method="POST" action="{{ url_for('predict') }}">
                 <div class="mb-3">
                     <label for="exampleDataList" class="form-label">Location</label>
-                    <input class="form-control" list="datalistOptions" id="exampleDataList"
-                       name="ward" placeholder="Type to search...">
+                    <input class="form-control" list="datalistOptions"
+                        id="ward" name="ward" placeholder="Type to search...">
                     <datalist id="datalistOptions">
                         {% for area in areas %}
                         <option value={{ area }}>
@@ -21,11 +21,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Volume</label>
-                    <input class="form-control" type="number" name="volume" placeholder="Litres per month" />
+                    <input class="form-control" type="number" id="volume" name="volume" placeholder="Litres per month" />
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Month</label>
-                    <input class="form-control" type="month" name="month" placeholder="month" />
+                    <input class="form-control" type="month" id="month" name="month" placeholder="month" />
                 </div>
                 <button class="btn btn-primary">Submit</button>
             </form>
@@ -39,7 +39,7 @@
         <div class="col-12 col-md-8 px-3 g-3">
             <div class="row flex-column">
                 <div class="col-12">
-                    <iframe src="{{ map_url }}" width="100%" height="400px" style="border:none;"></iframe>
+                    <iframe id="map" src="{{ map_url }}" width="100%" height="400px" style="border:none;"></iframe>
                     <!-- <img class="img-fluid"
                         src="https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/b/4/b48995b5fe7300b939581e9b4b81f49977060b430bdfa2a2d2d1f858607b7de3/nairobi-map-slide1.png"
                         alt="Nairobi Map" /> -->

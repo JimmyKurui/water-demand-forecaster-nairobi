@@ -21,10 +21,13 @@ def predict():
     from app.services.ml import MIL
     if request.method == "POST":
         ward = escape(request.form.get("ward"))
-        month = escape(request.form.get("month"))
+        month = request.form.get("month")
         lstm = MIL()
         month = datetime.strptime(month, "%Y-%m")
         prediction, df = lstm.predict(ward, month)
+        from app.services.gis import Map
+        map = Map()
+        map.create_water_choropleth(water_data=df, date=df.tail(1).index[0])
         return jsonify({"value": prediction.tolist()})
     elif request.method == "GET":
         return "You made a GET request \n"

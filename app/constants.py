@@ -20,7 +20,7 @@ zones = {
 
     ],
 
-    'R3' : ['CBD', 'Kas', 'Karura', 'Fedha', 'Pipeline', 'Jogoo', 'Ofafa', 'Eastleigh', 'Ziwani','Starehe', 'Old Eastlands', 
+    'R3' : ['CBD', 'Kas', 'Karura', 'Fedha', 'Pipeline', 'Jogoo', 'Ofafa', 'Eastleigh North', 'Eastleigh South', 'Ziwani','Starehe', 'Old Eastlands', 
         'Imara Daima', 'Tassia', 'Fedha', 'Avenue'
         'Kayole', 'Komarock',  # Others
         'Dagoretti', 'Riruta', 'Kangemi', 'Mutuini', 'Waithaka', 'Ruthimitu', 'Uthiru',
