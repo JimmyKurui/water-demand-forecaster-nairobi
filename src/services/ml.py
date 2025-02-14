@@ -35,22 +35,7 @@ class MIL():
         model.to(device)
         model.load_state_dict(torch.load(model_path, weights_only=True))
         self.model = model.eval()
-    
-    # def predict(self, location, household_volume, month):
-    #     X = [
-    #         (household_volume * 1.5) if location in zones['R1'] else 0.0,
-    #         (household_volume * 1.0) if location in zones['R2'] else 0.0,
-    #         (household_volume * 1.5) if location in zones['R3'] else 0.0,
-    #         (household_volume * 1.5) if location in zones['R4'] else 0.0,
-    #     ]
-    #     X = torch.tensor(np.array([X])).float()
-    #     log = PowerTransformer()
-    #     df = log.fit_transform(X)
-    #     x_test = torch.tensor([df]).float()
-    #     y_hat = self.model(x_test)
-    #     y_hat = log.inverse_transform(y_hat.detach().numpy())
-    #     return y_hat.tolist()[0]
-    
+
     def predict(self, location, month):
         log = PowerTransformer()
         water_df = pd.read_csv(data_path, index_col='date', parse_dates=['date'])

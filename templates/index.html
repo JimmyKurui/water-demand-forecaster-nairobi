@@ -1,113 +1,132 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="container-fluid">
     <div class="row">
         <h1>{{ city }}</h1>
     </div>
     <div class="row">
-        <div class="col-12 col-md-4 p-3 border-end">
-            <p class="text-muted">Input options to predict water usage</p>
-            <form id="predict-form" method="POST" action="{{ url_for('predict') }}">
-                <div class="mb-3">
-                    <label for="exampleDataList" class="form-label">Location</label>
-                    <input class="form-control" list="datalistOptions"
-                        id="ward" name="ward" placeholder="Type to search...">
-                    <datalist id="datalistOptions">
-                        {% for area in areas %}
-                        <option value={{ area }}>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Volume</label>
-                    <input class="form-control" type="number" id="volume" name="volume" placeholder="Litres per month" />
-                </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Month</label>
-                    <input class="form-control" type="month" id="month" name="month" placeholder="month" />
-                </div>
-                <button class="btn btn-primary">Submit</button>
-            </form>
+        <div class="col-12 col-lg-3 p-4 border-end">
+            <section id="predict-section">
+                <p class="text-muted">Input options to predict water usage</p>
+                <form id="predict-form" action="{{ url_for('predict') }}">
+                    <div class="mb-3">
+                        <label for="exampleDataList" class="form-label">Location</label>
+                        <input class="form-control" list="datalistOptions" id="ward" name="ward"
+                            placeholder="Type to search..." />
+                        <datalist id="datalistOptions">
+                            {% for area in areas %}
+                            <option value="{{ area }}">{{ area }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Volume</label>
+                        <input class="form-control" type="number" id="volume" name="volume"
+                            placeholder="m3 per month" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Month</label>
+                        <input class="form-control" type="month" id="month" name="month" placeholder="month" />
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
 
-            <!-- <h1>Upload Contribution</h1>
+                <!-- <h1>Upload Contribution</h1>
                 <form method="POST" action="{{ url_for('contribute') }}" enctype="multipart/form-data">
                     <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheet, application/vnd.ms-excel" />
                     <input type="submit" value="Upload" />
                 </form> -->
+            </section>
         </div>
-        <div class="col-12 col-md-8 px-3 g-3">
+        <div class="col-12 col-lg-9 px-3">
             <div class="row flex-column">
-                <div class="col-12">
-                    <iframe id="map" src="{{ map_url }}" width="100%" height="400px" style="border:none;"></iframe>
-                    <!-- <img class="img-fluid"
+                <div class="col-12 mb-3">
+                    <section id="map-section">
+                        <iframe id="map" src="{{ map_url }}" width="100%" height="400px" style="border: none"></iframe>
+                        <!-- <img class="img-fluid"
                         src="https://cdn.sketchbubble.com/pub/media/catalog/product/optimized1/b/4/b48995b5fe7300b939581e9b4b81f49977060b430bdfa2a2d2d1f858607b7de3/nairobi-map-slide1.png"
                         alt="Nairobi Map" /> -->
+                    </section>
                 </div>
-                <div class="col-12 d-flex justify-content-between">
-                    <div class="table-responsive-sm">
-                        <table class="table table-sm table-striped border-primary table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="table-responsive-sm">
-                        <table class="table table-sm table-striped border-success table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-12">
+                    <section id="tables-section" class="d-flex justify-content-between flex-wrap">
+                        <div class="table-responsive-sm">
+                            <table class="table table-sm table-striped border-primary table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="3" class="text-center">Zone 1</th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Per person (m3)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  Zone 2 -->
+                        <div class="table-responsive-sm">
+                            <table class="table table-sm table-striped border-primary table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="2" class="text-center">Zone 2</th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Per person (m3)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  Zone 3  -->
+                        <div class="table-responsive-sm">
+                            <table class="table table-sm table-striped border-primary table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="2" class="text-center">Zone 3</th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Per person (m3)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--  Zone 4  -->
+                        <div class="table-responsive-sm">
+                            <table class="table table-sm table-striped border-success table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="2" class="text-center">Zone 4</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Per person (m3)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>

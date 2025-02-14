@@ -52,7 +52,6 @@ class Map:
         center = [self.nairobi.geometry.centroid.y.mean(), self.nairobi.geometry.centroid.x.mean()]
         m = folium.Map(location=center, tiles='cartodbpositron', zoom_start=11)
 
-        print(gdf.category.unique())
         choropleth = Choropleth(geo_data=gdf.__geo_interface__, 
             data=gdf[['ward', 'volume']], 
             columns=['ward', 'volume'],
@@ -64,7 +63,7 @@ class Map:
         choropleth.add_to(m)
         map_path = os.path.join(current_app.root_path, 'static/maps/nairobi_map.html')
         m.save(map_path)
-        return "/maps/nairobi_map.html"
+        return gdf[['ward','category']]
 
     def generate_interactive_map(self):
         center = [self.nairobi.geometry.centroid.y.mean(), self.nairobi.geometry.centroid.x.mean()]

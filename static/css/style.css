@@ -1,3 +1,19 @@
 body {
     background: #f5f5f5;
 }
+
+
+header #nav-links {
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: #c0c0c0;
+}
+
+#tables-section {
+    gap: 2rem;
+}
+
+#tables-section .table-responsive-sm {
+    flex-grow: 1;
+}
