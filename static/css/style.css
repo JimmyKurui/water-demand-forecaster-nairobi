@@ -1,19 +1,84 @@
 body {
-    background: #f5f5f5;
+  background: #f5f5f5;
 }
 
+@media (min-width: 1200px) {
+  .wrapper .container {
+    padding: 0 14rem;
+  }
+}
 
 header #nav-links {
-    font-size: 20px;
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: #c0c0c0;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #c0c0c0;
 }
 
+
 #tables-section {
-    gap: 2rem;
+  gap: 2rem;
 }
 
 #tables-section .table-responsive-sm {
-    flex-grow: 1;
+  flex-grow: 1;
+}
+
+.nav.nav-pills a.nav-link {
+  background-color: gainsboro;
+  color: white;
+}
+
+.nav.nav-pills a.nav-link.active {
+  background-color: white;
+  color: #212529;
+}
+
+
+span.material-icons {
+  font-size: inherit;
+}
+
+.hero-section {
+  background-color: #007bff;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+.hero-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+#kenya-map-box {
+  margin: 20px 0;
+  text-align: center;
+}
+#kenya-map-box img {
+  width: auto;
+  height: auto;
+  max-height: 50vh;
+  border-radius: 8px;
+}
+.cta-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cta-button:hover {
+  background-color: #218838;
+}
+.footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
 }

@@ -16,6 +16,10 @@ def index():
     areas = list(chain(*zones.values()))
     return render_template("index.html", title="Home", city="Nairobi", areas=areas, map_gdf=map.nairobi.columns, map_url=map.generate_interactive_map())
 
+@app.route("/about")
+def about():
+    return render_template("pages/about.html", title="About")
+
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
     from src.services.ml import MIL
@@ -24,6 +28,7 @@ def predict():
         month = request.form.get("month")
         lstm = MIL()
         month = datetime.strptime(month, "%Y-%m")
+        print('month', month)
         prediction, df = lstm.predict(ward, month)
         from src.services.gis import Map
         map = Map()

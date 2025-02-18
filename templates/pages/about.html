@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrapper">
+    <!-- Hero Section with Heading -->
+    <!-- <section class="hero-section">
+        <h1>Water Demand Forecasting in Nairobi</h1>
+        <p class="lead">A solution for a more sustainable future</p>
+    </section> -->
+    
+    <!-- Kenya Image Section -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <h2 class="section-title">Kenya: A Semi-Arid Nation</h2> -->
+                <p>Kenya is predominantly a semi-arid country, with about 80% of its land classified as arid or semi-arid.
+                    These regions host 25% of the population</p>
+                <!-- Image of Kenya -->
+                <div id="kenya-map-box" class="d-flex justify-content-center align-items-center p-2">
+                    <img src="{{ url_for('static', filename='images/kenya-relief-3d-2.png') }}" alt="Kenya Landscape 3D"
+                        class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Water Demand in Nairobi Section -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">Water Demand in Nairobi</h2>
+                <p>Nairobi faces water demand challenges including a rising population, inadequate supply infrastructure,
+                    unpredictable rainfall patterns and inefficient water management.
+                    To address these issues, machine learning can be employed for forecasting water usage and availability.
+                    By
+                    analyzing data on weather and various socio-economic patterns, more accurate predictions can be made to
+                    optimize resource allocation.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Using Our Application Section -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">Using The Application</h2>
+                <p>This application offers a user-friendly interface for predicting water usage with ANN and RNN deep
+                    learning models.
+                    Users input relevant data into a prediction form, which then generates GIS-mapped results over county
+                    wards alongside
+                    detailed tables summarizing forecasts for the 4 residential zones.
+                </p>
+                <p>This allows policymakers to visualize future needs spatially and
+                    make informed decisions based on precise data analysis. The intuitive design ensures ease of use for
+                    both technical experts and non-experts alike, facilitating better resource management across Nairobi's
+                    urban landscape.</p>
+                <a href="/" class="my-4 text-decoration-none cta-button">Try the Application</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,9 +1,14 @@
 var wardCategories = []
 var selectedWardPresent = false
 $(document).ready(function () {
+    // Model tabs
+    $('#models-tab-header a').on('click', function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  
     // Predict Form
     $("#predict-form").submit(function (event) {
-      console.log('form submitted')
       event.preventDefault();
   
       var formData = {
@@ -19,7 +24,6 @@ $(document).ready(function () {
         encode: true,
       })
         .done((data) => {
-          console.log(data)
           const twelveMonthPredictions = data.year_predictions.reverse()
           wardCategories = data.wards_categories
           const tables = $('#tables-section table tbody')

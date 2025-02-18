@@ -6,29 +6,50 @@
     <div class="row">
         <div class="col-12 col-lg-3 p-4 border-end">
             <section id="predict-section">
-                <p class="text-muted">Input options to predict water usage</p>
-                <form id="predict-form" action="{{ url_for('predict') }}">
-                    <div class="mb-3">
-                        <label for="exampleDataList" class="form-label">Location</label>
-                        <input class="form-control" list="datalistOptions" id="ward" name="ward"
-                            placeholder="Type to search..." />
-                        <datalist id="datalistOptions">
-                            {% for area in areas %}
-                            <option value="{{ area }}">{{ area }}</option>
-                            {% endfor %}
-                        </datalist>
+                <ul class="nav nav-pills" id="models-tab-header" role="tablist">
+                    <li class="nav-item me-2">
+                        <a class="nav-link active" id="rnn-tab" data-toggle="pill" href="#rnn" role="tab"
+                            aria-controls="rnn" aria-selected="true">RNN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="ann-tab" data-toggle="pill" href="#ann" role="tab" 
+                        aria-controls="ann" aria-selected="false">
+                            ANN 
+                            <span class="material-icons">auto_awesome</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3" id="models-tab-content">
+                    <div class="tab-pane fade show active" id="rnn" role="tabpanel" aria-labelledby="rnn-tab">
+                        <p class="text-muted">Input options to predict water usage</p>
+                        <form id="predict-form" action="{{ url_for('predict') }}">
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Location</label>
+                                <input class="form-control" list="datalistOptions" id="ward" name="ward"
+                                    placeholder="Type to search..." required />
+                                <datalist id="datalistOptions">
+                                    {% for area in areas %}
+                                    <option value="{{ area }}">{{ area }}</option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                            <!-- <div class="mb-3">
+                                <label for="formFile" class="form-label">Volume</label>
+                                <input class="form-control" type="number" id="volume" name="volume"
+                                    placeholder="m3 per month" disabled />
+                            </div> -->
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Month</label>
+                                <input class="form-control" type="month" id="month" name="month"
+                                    pattern="[0-9]{4}-[0-9]{2}" placeholder="month (2022-12)" required />
+                            </div>
+                            <button class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Volume</label>
-                        <input class="form-control" type="number" id="volume" name="volume"
-                            placeholder="m3 per month" disabled />
+                    <div class="tab-pane fade" id="ann" role="tabpanel" aria-labelledby="ann-tab">
+                        <p class="text-muted">Coming soon</p>
                     </div>
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Month</label>
-                        <input class="form-control" type="month" id="month" name="month" placeholder="month" />
-                    </div>
-                    <button class="btn btn-primary">Submit</button>
-                </form>
+                </div>
 
                 <!-- <h1>Upload Contribution</h1>
                 <form method="POST" action="{{ url_for('contribute') }}" enctype="multipart/form-data">
@@ -108,7 +129,7 @@
                         </div>
                         <!--  Zone 4  -->
                         <div class="table-responsive-sm">
-                            <table class="table table-sm table-striped border-success table-hover table-responsive">
+                            <table class="table table-sm table-striped border-info table-hover table-responsive">
                                 <thead>
                                     <tr>
                                         <th scope="col" colspan="2" class="text-center">Zone 4</th>
